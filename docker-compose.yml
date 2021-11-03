@@ -1,0 +1,28 @@
+version: "3"
+services:
+  minthcm:
+#    image: minthcm:3.0.8
+    build: .
+    ports:
+      - "8008:80"
+    networks:
+      - minthcm
+    restart: unless-stopped
+  mysql:
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Thisisv3ryS@fe
+      MYSQL_DATABASE: minthcm
+      MYSQL_USER: minthcm
+      MYSQL_PASSWORD: minthcm
+    networks:
+      - minthcm
+    volumes:
+      - minthcm:/var/lib/mysql
+
+networks:
+  minthcm:
+
+volumes:
+  minthcm:
